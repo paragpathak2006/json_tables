@@ -1,5 +1,6 @@
 from docx import Document
 
+""" Document Exporter Class """
 class DocumentExporter:
     def __init__(self, output_path: str):
 

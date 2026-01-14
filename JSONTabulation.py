@@ -3,11 +3,10 @@ from docx import Document
 from html2docx import html2docx
 
 
+"""
+For html 
+"""
 def add_html(container, html):
-    """
-    container: Document or table cell
-    html: HTML string
-    """
     temp_doc = Document(html2docx(html, title=""))
 
     for p in temp_doc.paragraphs:
@@ -18,6 +17,9 @@ def add_html(container, html):
             r.italic = run.italic
             r.underline = run.underline
 
+"""
+The main recursive tabulation class 
+"""
 class JSONTabulator:
 
     def tabulate(self, container: Document, data):
@@ -27,12 +29,12 @@ class JSONTabulator:
             add_html(container, str(data))
             return
 
-        # Excel table
+        #   Excel-style table for array of objects
         if self.is_arr(data):
             self.excel_table(container, data)
             return
 
-        # Dictionary table
+        # Dictionary style table for objects and arrays
         if isinstance(data, dict):
             table = container.add_table(rows=len(data), cols=2)
             table.style = "Table Grid"
@@ -63,6 +65,7 @@ class JSONTabulator:
                 else:
                     cell.text = str(item)
 
+    """ Excel-style table for array of objects """
     def excel_table(self,container, array):
 
         # All columns 
@@ -92,7 +95,7 @@ class JSONTabulator:
                 else:
                     cell.text = "" if value is None else str(value)
 
-    # checks if input is array of objects
+    """checks if input is array of objects"""
     def is_arr(self, arr):
         return (
             isinstance(arr, list)

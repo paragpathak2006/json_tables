@@ -3,7 +3,7 @@ from JSONTabulation import JSONTabulator
 from DocumentExporter import DocumentExporter
 
 from docx import Document
-
+""" JSON to Document Converter Class """
 class JSON_To_Document_Converter:
     def __init__(self, input_path_json: str, output_path_docx: str):
 

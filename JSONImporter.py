@@ -1,6 +1,7 @@
 import json
 import os
 
+""" JSON Importer Class """
 class JSONImporter:
     def __init__(self, file_path: str):
 

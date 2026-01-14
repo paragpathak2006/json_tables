@@ -12,9 +12,10 @@ from pathlib import Path
 from Timer import Timer 
 from Logger import Logger
 
-
+""" Tester for JSON to DOCX conversion """
 class Tester:
 
+    """ Tests JSON to DOCX conversion """
     def test_JSON_To_Document_Converter(self, input_json_path: str, output_docx_path: str):
 
         self.remove_file_if_exists(output_docx_path)
@@ -28,11 +29,14 @@ class Tester:
         else:
             print("Test failed.")
 
+    """ Removes file if it exists """
     def remove_file_if_exists(self, path: str):
         file_path = Path(path)
         if file_path.exists():
             file_path.unlink()
 
+
+    """ Checks if file exists """
     def check_if_file_exists(self, path: str):
         assert os.path.exists(path), "Output DOCX file was not created."
 
@@ -41,6 +45,7 @@ class Tester:
         else:
             return True
 
+    """ Runs all tests """
     def run_tests(self):
         timer = Timer()
         timer.start()
@@ -54,6 +59,7 @@ class Tester:
             print("-----\n")
 
 
+""" Main entry point for running the tests """
 if __name__ == "__main__":
 
     tester = Tester()

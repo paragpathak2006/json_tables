@@ -1,3 +1,4 @@
+""" Logger Class """
 class Logger:
     @staticmethod
     def log(message: str):
