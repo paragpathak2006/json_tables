@@ -1,0 +1,98 @@
+{
+	"Section 01": {
+		"<b>Title</b>": "<b>Example Procedure</b>",
+		"Date Written": "<i>01/06/2018</i>",
+		"Date Due": "01/08/2018"
+	},
+	"Section 02": [
+		{
+			"Name": "A Stevens",
+			"Phone No.": "(345)346-2344",
+			"Email Address": "stevens@gmail.com",
+			"Active Employee?": "yes"
+		},
+		{
+			"Name": "B Smith",
+			"Phone No.": "(576)456-1233",
+			"Email Address": "smith@gmail.com",
+			"Active Employee?": "no"
+		},
+		{
+			"Name": "<i>sd<i>",
+			"Phone No.": "",
+			"Email Address": "",
+			"Active Employee?": ""
+		},
+		{
+			"Name": "",
+			"Phone No.": "",
+			"Email Address": "",
+			"Active Employee?": ""
+		}
+	],
+	"Section 03": {
+		"First Stage of the Procedure": [
+			{
+				"Step No.": 1,
+				"Details": "Go To Room A"
+			},
+			{
+				"Step No.": 2,
+				"Details": "Open the Door"
+			},
+			{
+				"Step No.": 3,
+				"Details": "Enter Room A"
+			},
+			{
+				"Step No.": 4,
+				"Details": {
+					"Note the date.": {
+						"Date": "02/06/2018"
+					}
+				}
+			}
+		],
+		"Second Stage of the Procedure": [
+			{
+				"Step No.": 7,
+				"Details": "Eat Some Biscuits"
+			},
+			{
+				"Step No.": 8,
+				"Details": "Relax for a bit"
+			},
+			{
+				"Step No.": 9,
+				"Details": "Log yesterday’s date"
+			}
+		],
+		"Completed Procedure": ""
+	},
+	"Section 04": [
+		{
+			"Author": "A Stevens",
+			"Change Description.": "Wrote Document",
+			"Date": "01/06/18",
+			"Version": "0.0.1"
+		},
+		{
+			"Author": "B Smith",
+			"Change Description.": "Read Document",
+			"Date": "02/03/18",
+			"Version": "0.0.2"
+		},
+		{
+			"Author": "",
+			"Change Description.": "",
+			"Date": "",
+			"Version": ""
+		},
+		{
+			"Author": "",
+			"Change Description.": "",
+			"Date": "",
+			"Version": ""
+		}
+	]
+}
