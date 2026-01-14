@@ -39,17 +39,17 @@ class JSONTabulator:
             table = container.add_table(rows=len(data), cols=2)
             table.style = "Table Grid"
 
-            for r, (k, v) in enumerate(data.items()):
-                key_cell = table.cell(r, 0)
-                val_cell = table.cell(r, 1)
+            for row, (k, v) in enumerate(data.items()):
+                key = table.cell(row, 0)
+                value = table.cell(row, 1)
 
-                key_cell.text = str(k)
-                val_cell.text = ""
+                key.text = str(k)
+                value.text = ""
 
                 if isinstance(v, (dict, list)):
-                    self.tabulate(val_cell, v)
+                    self.tabulate(value, v)
                 else:
-                    val_cell.text = "" if v is None else str(v)
+                    value.text = "" if v is None else str(v)
 
             return
 
@@ -71,22 +71,22 @@ class JSONTabulator:
         # All columns 
         columns = []
         for obj in array:
-            for k in obj.keys():
-                if k not in columns:
-                    columns.append(k)
+            for key in obj.keys():
+                if key not in columns:
+                    columns.append(key)
 
         table = container.add_table(rows=len(array) + 1, cols=len(columns))
         table.style = "Table Grid"
 
         # First row
-        for c, col in enumerate(columns):
-            cell = table.cell(0, c)
+        for colum, col in enumerate(columns):
+            cell = table.cell(0, colum)
             cell.text = col
 
         # Data rows
-        for r, obj in enumerate(array, start=1):
-            for c, col in enumerate(columns):
-                cell = table.cell(r, c)
+        for row, obj in enumerate(array, start=1):
+            for colum, col in enumerate(columns):
+                cell = table.cell(row, colum)
                 cell.text = ""
 
                 value = obj.get(col)
