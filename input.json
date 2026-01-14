@@ -1,7 +1,7 @@
 {
 	"Section 01": {
-		"<b>Title</b>": "<b>Example Procedure</b>",
-		"Date Written": "<i>01/06/2018</i>",
+		"Title": "Example Procedure",
+		"Date Written": "01/06/2018",
 		"Date Due": "01/08/2018"
 	},
 	"Section 02": [
@@ -18,7 +18,7 @@
 			"Active Employee?": "no"
 		},
 		{
-			"Name": "<i>sd<i>",
+			"Name": "",
 			"Phone No.": "",
 			"Email Address": "",
 			"Active Employee?": ""

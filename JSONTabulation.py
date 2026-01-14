@@ -1,12 +1,30 @@
 import json
 from docx import Document
+from html2docx import html2docx
+
+
+def add_html(container, html):
+    """
+    container: Document or table cell
+    html: HTML string
+    """
+    temp_doc = Document(html2docx(html, title=""))
+
+    for p in temp_doc.paragraphs:
+        target_p = container.add_paragraph()
+        for run in p.runs:
+            r = target_p.add_run(run.text)
+            r.bold = run.bold
+            r.italic = run.italic
+            r.underline = run.underline
 
 class JSONTabulator:
 
     def tabulate(self, container: Document, data):
 
         if not isinstance(data, (dict, list)):
-            container.add_paragraph(str(data))
+            # container.add_paragraph(str(data))
+            add_html(container, str(data))
             return
 
         # Excel table
