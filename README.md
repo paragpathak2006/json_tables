@@ -11,9 +11,9 @@ This is the main wrapper class that handles the full operation. A JSON file is d
 
 ```mermaid
 graph LR;
-    X(JSON_To_Document_Converter) --> A(JSONImporter);
-    X --> B(JSONTabulation);
-    X --> C(DocumentExporter);
+    X(JSON To Document Converter) --> A(JSON Importer);
+    X --> B(JSON Tabulation);
+    X --> C(Document Exporter);
     style X fill:#111111,stroke:#333,stroke-width:4px
     style A fill:red,stroke:#333,stroke-width:4px
     style B fill:green,color:#fff
@@ -24,10 +24,10 @@ Code follows the following flow
 
 ```mermaid
 graph LR;
-    S[.json] --> A(JSONImporter)
+    S[.json] --> A(JSON Importer)
 
-    A --> B(JSONTabulation);
-    B --> C(DocumentExporter);
+    A --> B(JSON Tabulation);
+    B --> C(Document Exporter);
     C --> D[.docx];
 
     style B fill:green,color:#fff
