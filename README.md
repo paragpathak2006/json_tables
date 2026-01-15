@@ -14,6 +14,10 @@ graph LR;
     X(JSON_To_Document_Converter) --> A(JSONImporter);
     X --> B(JSONTabulation);
     X --> C(DocumentExporter);
+    style X fill:#111111,stroke:#333,stroke-width:4px
+    style A fill:red,stroke:#333,stroke-width:4px
+    style B fill:green,color:#fff
+    style C fill:red,stroke:#333,stroke-width:4px
 ```
 
 Code follows the following flow
