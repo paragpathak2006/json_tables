@@ -1,20 +1,20 @@
 {
 	"Section 01": {
-		"Title": "Example Procedure",
-		"Date Written": "01/06/2018",
-		"Date Due": "01/08/2018"
+		"Title": "<b>Example Procedure</b>",
+		"Date Written": "<i>01/06/2018</i>",
+		"Date Due": "<i>01/08/2018</i>"
 	},
 	"Section 02": [
 		{
-			"Name": "A Stevens",
-			"Phone No.": "(345)346-2344",
-			"Email Address": "stevens@gmail.com",
+			"Name": "<b>A Stevens</b>",
+			"Phone No.": "<i>(345)346-2344</i>",
+			"Email Address": "<u><i>stevens@gmail.com</i></u>",
 			"Active Employee?": "yes"
 		},
 		{
-			"Name": "B Smith",
-			"Phone No.": "(576)456-1233",
-			"Email Address": "smith@gmail.com",
+			"Name": "<b>B Smith</b>",
+			"Phone No.": "<i>(576)456-1233</i>",
+			"Email Address": "<u><i>smith@gmail.com</i></u>",
 			"Active Employee?": "no"
 		},
 		{
@@ -34,21 +34,21 @@
 		"First Stage of the Procedure": [
 			{
 				"Step No.": 1,
-				"Details": "Go To Room A"
+				"Details": "<i>Go To Room A</i>"
 			},
 			{
 				"Step No.": 2,
-				"Details": "Open the Door"
+				"Details": "<i>Open the Door</i>"
 			},
 			{
 				"Step No.": 3,
-				"Details": "Enter Room A"
+				"Details": "<i>Enter Room A</i>"
 			},
 			{
 				"Step No.": 4,
 				"Details": {
-					"Note the date.": {
-						"Date": "02/06/2018"
+					"<i>Note the date.</i>": {
+						"Date": "<i>02/06/2018</i>"
 					}
 				}
 			}
@@ -56,30 +56,30 @@
 		"Second Stage of the Procedure": [
 			{
 				"Step No.": 7,
-				"Details": "Eat Some Biscuits"
+				"Details": "<i>Eat <b>Some</b> Biscuits</i>"
 			},
 			{
 				"Step No.": 8,
-				"Details": "Relax for a bit"
+				"Details": "<i>Relax for a bit</i>"
 			},
 			{
 				"Step No.": 9,
-				"Details": "Log yesterday’s date"
+				"Details": "<i>Log yesterday's date</i>"
 			}
 		],
 		"Completed Procedure": ""
 	},
 	"Section 04": [
 		{
-			"Author": "A Stevens",
+			"Author": "<b>A Stevens</b>",
 			"Change Description.": "Wrote Document",
-			"Date": "01/06/18",
+			"Date": "<i>01/06/18</i>",
 			"Version": "0.0.1"
 		},
 		{
-			"Author": "B Smith",
+			"Author": "<b>B Smith</b>",
 			"Change Description.": "Read Document",
-			"Date": "02/03/18",
+			"Date": "<i>02/03/18</i>",
 			"Version": "0.0.2"
 		},
 		{

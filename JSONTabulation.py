@@ -1,8 +1,7 @@
 import json
 from docx import Document
-from html2docx import html2docx
 from Logger import Logger 
-
+from html4docx import HtmlToDocx
 
 """
 The main recursive tabulation class 
@@ -12,7 +11,8 @@ class JSONTabulator:
         assert isinstance(data, (dict, list)), "Data must be a dictionary or a list."   
         Logger.log("Initialized JSONTabulator")
         self.doc = doc
-        self.data = data        
+        self.data = data
+        self.html_converter = HtmlToDocx()
 
     """ The main tabulation function """
     def convert(self):
@@ -24,9 +24,8 @@ class JSONTabulator:
         Logger.log("Called JSONTabulator::tabulate()")
 
         # Base case: if data is a string, add as paragraph
-        if isinstance(data, str):
-            # container.add_paragraph(str(data))
-            self.add_html(container, str(data))
+        if not isinstance(data, (dict, list)):
+            self.html_converter.add_html_to_cell(str(data), container)
             return
 
         # if data is an array of objects, create excel-style table
@@ -41,7 +40,7 @@ class JSONTabulator:
 
             for row, (key, value) in enumerate(data.items()):
                 key_cell = table.cell(row, 0)
-                key_cell.text = str(key)
+                self.html_converter.add_html_to_cell(str(key), key_cell)
 
                 value_cell = table.cell(row, 1)
                 value_cell.text = ""
@@ -49,7 +48,7 @@ class JSONTabulator:
                 if isinstance(value, (dict, list)):
                     self.tabulate(value_cell, value)
                 else:
-                    value_cell.text = "" if value is None else str(value)
+                    self.html_converter.add_html_to_cell("" if value is None else str(value), value_cell)
 
             return
 
@@ -64,8 +63,8 @@ class JSONTabulator:
                 if isinstance(item, (dict, list)):
                     self.tabulate(cell, item)
                 else:
-                    cell.text = str(item)
-
+                    self.html_converter.add_html_to_cell(str(item), cell)
+                    
         return
 
     """ Excel-style table for array of objects """
@@ -86,7 +85,7 @@ class JSONTabulator:
         # First row
         for index, column in enumerate(columns):
             cell = table.cell(0, index)
-            cell.text = column
+            self.html_converter.add_html_to_cell(column, cell)
 
         # Data rows
         for row, obj in enumerate(array, start=1):
@@ -98,7 +97,7 @@ class JSONTabulator:
                 if isinstance(value, (dict, list)):
                     self.tabulate(cell, value)
                 else:
-                    cell.text = "" if value is None else str(value)
+                    self.html_converter.add_html_to_cell("" if value is None else str(value), cell)
 
     """checks if input is array of objects"""
     def is_arr(self, arr):
@@ -107,20 +106,6 @@ class JSONTabulator:
             and arr
             and all(isinstance(x, dict) for x in arr)
         )
-
-    """
-    For html 
-    """
-    def add_html(self, container, html):
-        temp_doc = Document(html2docx(html, title=""))
-
-        for p in temp_doc.paragraphs:
-            target_p = container.add_paragraph()
-            for run in p.runs:
-                r = target_p.add_run(run.text)
-                r.bold = run.bold
-                r.italic = run.italic
-                r.underline = run.underline
 
     """
     The main recursive tabulation class 
