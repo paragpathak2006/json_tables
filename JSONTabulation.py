@@ -1,58 +1,59 @@
 import json
 from docx import Document
 from html2docx import html2docx
+from Logger import Logger 
 
-
-"""
-For html 
-"""
-def add_html(container, html):
-    temp_doc = Document(html2docx(html, title=""))
-
-    for p in temp_doc.paragraphs:
-        target_p = container.add_paragraph()
-        for run in p.runs:
-            r = target_p.add_run(run.text)
-            r.bold = run.bold
-            r.italic = run.italic
-            r.underline = run.underline
 
 """
 The main recursive tabulation class 
 """
 class JSONTabulator:
+    def __init__(self, doc: Document, data: dict | list):
+        assert isinstance(data, (dict, list)), "Data must be a dictionary or a list."   
+        Logger.log("Initialized JSONTabulator")
+        self.doc = doc
+        self.data = data        
 
-    def tabulate(self, container: Document, data):
+    """ The main tabulation function """
+    def convert(self):
+        Logger.log("Called JSONTabulator::convert()")
+        self.tabulate(self.doc, self.data)
 
-        if not isinstance(data, (dict, list)):
+    """ The recursive tabulation function """
+    def tabulate(self, container: Document, data: dict | list | str ):
+        Logger.log("Called JSONTabulator::tabulate()")
+
+        # Base case: if data is a string, add as paragraph
+        if isinstance(data, str):
             # container.add_paragraph(str(data))
-            add_html(container, str(data))
+            self.add_html(container, str(data))
             return
 
-        #   Excel-style table for array of objects
+        # if data is an array of objects, create excel-style table
         if self.is_arr(data):
             self.excel_table(container, data)
             return
 
-        # Dictionary style table for objects and arrays
+        # if data is a dictionary , create a two-column table
         if isinstance(data, dict):
             table = container.add_table(rows=len(data), cols=2)
             table.style = "Table Grid"
 
-            for row, (k, v) in enumerate(data.items()):
-                key = table.cell(row, 0)
-                value = table.cell(row, 1)
+            for row, (key, value) in enumerate(data.items()):
+                key_cell = table.cell(row, 0)
+                key_cell.text = str(key)
 
-                key.text = str(k)
-                value.text = ""
+                value_cell = table.cell(row, 1)
+                value_cell.text = ""
 
-                if isinstance(v, (dict, list)):
-                    self.tabulate(value, v)
+                if isinstance(value, (dict, list)):
+                    self.tabulate(value_cell, value)
                 else:
-                    value.text = "" if v is None else str(v)
+                    value_cell.text = "" if value is None else str(value)
 
             return
 
+        # if data is a list of values, create a single-column table
         if isinstance(data, list):
             table = container.add_table(rows=len(data), cols=1)
             table.style = "Table Grid"
@@ -65,8 +66,12 @@ class JSONTabulator:
                 else:
                     cell.text = str(item)
 
+        return
+
     """ Excel-style table for array of objects """
-    def excel_table(self,container, array):
+    def excel_table(self, container: Document, array : list):
+        Logger.log("Creating Excel-style table")
+        Logger.log("Called JSONTabulator::excel_table()")
 
         # All columns 
         columns = []
@@ -79,17 +84,17 @@ class JSONTabulator:
         table.style = "Table Grid"
 
         # First row
-        for colum, col in enumerate(columns):
-            cell = table.cell(0, colum)
-            cell.text = col
+        for index, column in enumerate(columns):
+            cell = table.cell(0, index)
+            cell.text = column
 
         # Data rows
         for row, obj in enumerate(array, start=1):
-            for colum, col in enumerate(columns):
-                cell = table.cell(row, colum)
+            for index, column in enumerate(columns):
+                cell = table.cell(row, index)
                 cell.text = ""
 
-                value = obj.get(col)
+                value = obj.get(column)
                 if isinstance(value, (dict, list)):
                     self.tabulate(cell, value)
                 else:
@@ -103,5 +108,21 @@ class JSONTabulator:
             and all(isinstance(x, dict) for x in arr)
         )
 
+    """
+    For html 
+    """
+    def add_html(self, container, html):
+        temp_doc = Document(html2docx(html, title=""))
 
-    pass
+        for p in temp_doc.paragraphs:
+            target_p = container.add_paragraph()
+            for run in p.runs:
+                r = target_p.add_run(run.text)
+                r.bold = run.bold
+                r.italic = run.italic
+                r.underline = run.underline
+
+    """
+    The main recursive tabulation class 
+    """
+

@@ -1,7 +1,7 @@
 from docx import Document
 
 """ Document Exporter Class """
-class DocumentExporter:
+class DOCXExporter:
     def __init__(self, output_path: str):
 
         assert output_path.endswith(".docx"), "Output file must have a .docx extension."

@@ -35,7 +35,6 @@ class Tester:
         if file_path.exists():
             file_path.unlink()
 
-
     """ Checks if file exists """
     def check_if_file_exists(self, path: str):
         assert os.path.exists(path), "Output DOCX file was not created."
@@ -57,7 +56,6 @@ class Tester:
             self.test_JSON_To_Document_Converter(input_json_path, output_docx_path)
             print("Time elasped = " + f"{timer.stop():e}")
             print("-----\n")
-
 
 """ Main entry point for running the tests """
 if __name__ == "__main__":
