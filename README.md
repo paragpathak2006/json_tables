@@ -6,6 +6,18 @@ Input is a simple JSON file
 ### **Output** : DOCX file
 Output consists of a DOCX file with a tabulated JSON
 
+### **Dependencies**
+```bash
+pip install html4docx python-docx
+```
+
+### **Run**
+To run copy and paste the following
+
+```bash
+python -m unittest run_unit_tests.py
+```
+
 # JSON To Document Converter
 This is the main wrapper class that handles the full operation. A JSON file is directly converted to DOCX file by this class. Internally three objects handle the three parts of the operation Import, Process and export.
 

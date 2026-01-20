@@ -1,12 +1,16 @@
 """ Logger Class """
 class Logger:
+    log_enabled = False
+
     @staticmethod
     def log(message: str):
-        print(message)  
+        if Logger.log_enabled:
+            print(message)
 
     @staticmethod
     def error(message: str):
-        print(f"ERROR: {message}") 
+        if Logger.log_enabled:
+            print(f"ERROR: {message}")
 
-    pass
+    # pass
 
