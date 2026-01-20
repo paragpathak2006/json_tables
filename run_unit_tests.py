@@ -40,20 +40,20 @@ class Run_Unit_Tests(unittest.TestCase):
     def test_docx_file_created(self):
         print("\n\n1. checking if docx files were created...")
         for output_file_path in self.output_file_paths:
-            self.assertTrue(os.path.exists(output_file_path))
+            self.assertTrue(os.path.exists(output_file_path),"Output DOCX file was not created: " + output_file_path)
         print("Test OK\n\n")
 
 
     def test_docx_file_xml_with_benchmark(self):
         print("\n\n2. comparing docx file xml with benchmark...")        
         for output_file_path in self.output_file_paths:
-            self.assertTrue(DOCXComparator.compare_document_xml(output_file_path, self.benchmark_file_path))
+            self.assertTrue(DOCXComparator.compare_document_xml(output_file_path, self.benchmark_file_path),"Failed XML comparison for " + output_file_path)
         print("Test OK\n\n")
 
     def test_docx_file_text_and_tables_with_benchmark(self):
         print("\n\n3. comparing docx file text and tables with benchmark...")    
         for output_file_path in self.output_file_paths:
-            self.assertTrue(DOCXComparator.compare_text_and_tables(output_file_path, self.benchmark_file_path))
+            self.assertTrue(DOCXComparator.compare_text_and_tables(output_file_path, self.benchmark_file_path),"Failed text and table comparison for " + output_file_path)
         print("Test OK\n\n")
 
     def test_docx_performance(self):
