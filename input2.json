@@ -1,0 +1,89 @@
+{
+	"Section 00": "<h1>Hello world</h1><p>This is a paragraph with <a href=\"http://example.com\">some link</a> <b>bold</b> and <i>italic</i> text.</p>",
+	"Section 01": {
+		"Title": "<b>Example Procedure</b>",
+		"Date Written": "<i>01/06/2018</i>",
+		"Date Due": "<i>01/08/2018</i>"
+	},
+	"Section 02": [
+		{
+			"Name": "<b>A Stevens</b>",
+			"Phone No.": "<i>(345)346-2344</i>",
+			"Email Address": "<u><i>stevens@gmail.com</i></u>",
+			"Active Employee?": "yes"
+		},
+		{
+			"Name": "<b>B Smith</b>",
+			"Phone No.": "<i>(576)456-1233</i>",
+			"Email Address": "<u><i>smith@gmail.com</i></u>",
+			"Active Employee?": "no"
+		},
+		{
+			"Name": "",
+			"Phone No.": "",
+			"Email Address": "",
+			"Active Employee?": ""
+		},
+		{
+			"Name": "",
+			"Phone No.": "",
+			"Email Address": "",
+			"Active Employee?": ""
+		}
+	],
+	"Section 03": [
+		"First Stage of the Procedure",
+		[
+			{
+				"Step No.": 1,
+				"Details": "<i>Go To Room A</i>"
+			},
+			{
+				"Step No.": 2,
+				"Details": "<i>Open the Door</i>"
+			},
+			{
+				"Step No.": 3,
+				"Details": "<i>Enter Room A</i>"
+			},
+			{
+				"Step No.": 4,
+				"Details": {
+					"Note the date.": {
+						"Date": "02/06/2018"
+					}
+				}
+			}
+		],
+		"Second Stage of the Procedure",
+		[
+			{
+				"Step No.": 7,
+				"Details": "<i>Eat Some Biscuits</i>"
+			},
+			{
+				"Step No.": 8,
+				"Details": "<i>Relax for a bit</i>"
+			},
+			{
+				"Step No.": 9,
+				"Details": "<i>Log yesterday’s date</i>"
+			}
+		],
+		"Completed"
+	],
+	"Section 04": [
+		{
+			"Author": "A Stevens",
+			"Change Description.": "Wrote Document",
+			"Date": "01/06/18",
+			"Version": "0.0.1"
+		},
+		{
+			"Author": "B Stevens",
+			"Change Description.": "Read Document",
+			"Date": "01/06/18",
+			"Version": "0.0.1"
+		}
+	]
+}

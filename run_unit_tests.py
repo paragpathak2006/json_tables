@@ -11,8 +11,8 @@ class Run_Unit_Tests(unittest.TestCase):
 
         print("\nSetting up JSON to DOCX conversion test...\n")
 
-        cls.benchmark_file_path = "benchmark.docx"
-        cls.input_file_paths = ["input.json", "input.json"]
+        cls.benchmark_file_paths = ["benchmark.docx", "benchmark2.docx"]
+        cls.input_file_paths = ["input.json", "input2.json"]
         cls.output_file_paths = ["output1.docx", "output2.docx"]
         cls.times = ["0.1", "0.1"]
         cls.maxTimeAllowed = 0.2  # Example time limit of 5 seconds
@@ -22,8 +22,8 @@ class Run_Unit_Tests(unittest.TestCase):
                 os.remove(output_file_path)
 
         timer = Timer()
-        i = 0
-        for input_json_path, output_docx_path, time in zip(cls.input_file_paths, cls.output_file_paths, cls.times):
+
+        for i, (input_json_path, output_docx_path) in enumerate(zip(cls.input_file_paths, cls.output_file_paths)):
             timer.start()
             converter = JSON_To_Document_Converter(input_json_path, output_docx_path)
             converter.convert()
@@ -35,7 +35,6 @@ class Run_Unit_Tests(unittest.TestCase):
             print("time =", cls.times[i])
             print(f"Conversion time for {input_json_path} to {output_docx_path} = " + cls.times[i])
             print("-----\n\n")
-            i += 1
 
     def test_docx_file_created(self):
         print("\n\n1. checking if docx files were created...")
@@ -43,17 +42,16 @@ class Run_Unit_Tests(unittest.TestCase):
             self.assertTrue(os.path.exists(output_file_path),"Output DOCX file was not created: " + output_file_path)
         print("Test OK\n\n")
 
-
     def test_docx_file_xml_with_benchmark(self):
         print("\n\n2. comparing docx file xml with benchmark...")        
-        for output_file_path in self.output_file_paths:
-            self.assertTrue(DOCXComparator.compare_document_xml(output_file_path, self.benchmark_file_path),"Failed XML comparison for " + output_file_path)
+        for output_file_path, benchmark_file_path in zip(self.output_file_paths, self.benchmark_file_paths):
+            self.assertTrue(DOCXComparator.compare_document_xml(output_file_path, benchmark_file_path),"Failed XML comparison for " + output_file_path)
         print("Test OK\n\n")
 
     def test_docx_file_text_and_tables_with_benchmark(self):
         print("\n\n3. comparing docx file text and tables with benchmark...")    
-        for output_file_path in self.output_file_paths:
-            self.assertTrue(DOCXComparator.compare_text_and_tables(output_file_path, self.benchmark_file_path),"Failed text and table comparison for " + output_file_path)
+        for output_file_path, benchmark_file_path in zip(self.output_file_paths, self.benchmark_file_paths):
+            self.assertTrue(DOCXComparator.compare_text_and_tables(output_file_path, benchmark_file_path),"Failed text and table comparison for " + output_file_path)
         print("Test OK\n\n")
 
     def test_docx_performance(self):
